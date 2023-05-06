@@ -1,5 +1,9 @@
+import 'package:egytour/providers/auth.dart';
+import 'package:egytour/screens/home_screen.dart';
+import 'package:egytour/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/components/button/gf_button.dart';
+import 'package:provider/provider.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -22,7 +26,11 @@ class _SignupScreenState extends State<SignupScreen> {
       return;
     }
 
-    print(_values);
+    Provider.of<Auth>(context, listen: false)
+        .signUp(_values['email'] as String, _values['password'] as String)
+        .then((value) {
+      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+    });
   }
 
   @override
@@ -57,6 +65,13 @@ class _SignupScreenState extends State<SignupScreen> {
                               if (value!.isEmpty) {
                                 return 'Please provide a value.';
                               }
+                              if (!RegExp(
+                                      r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                                  .hasMatch(value)) {
+                                print("email is true");
+                                return 'Please enter a valid email';
+                              }
+
                               return null;
                             },
                             onChanged: (value) {

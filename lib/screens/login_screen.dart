@@ -1,3 +1,6 @@
+import 'package:provider/provider.dart';
+
+import '../providers/auth.dart';
 import '../screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/components/button/gf_button.dart';
@@ -12,6 +15,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _form = GlobalKey<FormState>();
+  // ignore: prefer_final_fields
   var _values = {
     'email': '',
     'password': '',
@@ -22,7 +26,38 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+    Provider.of<Auth>(context, listen: false)
+        .logIn(_values['email'] as String, _values['password'] as String)
+        .then((value) {
+      if (Provider.of<Auth>(context, listen: false).isLoggedIn) {
+        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+      } else {
+        showDialog<void>(
+          context: context,
+          barrierDismissible: false, // user must tap button!
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Warning'),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: const <Widget>[
+                    Text('Password or email incorrect.'),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text('Ok'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    });
   }
 
   @override
@@ -57,6 +92,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (value!.isEmpty) {
                                 return 'Please provide a value.';
                               }
+                              if (!RegExp(
+                                      r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                                  .hasMatch(value)) {
+                                print("email is true");
+                                return 'Please enter a valid email';
+                              }
+
                               return null;
                             },
                             onChanged: (value) {

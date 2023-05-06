@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../providers/place.dart';
-import 'package:progressive_cached_network_image_cdn/image_cdn.dart';
 
 class PlaceDetail extends StatefulWidget {
   static const routeName = '/place-detail';
@@ -38,8 +37,6 @@ class _PlaceDetailState extends State<PlaceDetail> {
 
   @override
   Widget build(BuildContext context) {
-    // final place = ModalRoute.of(context)!.settings.arguments as Place;
-
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 124, 152, 213),
       appBar: AppBar(
@@ -54,25 +51,25 @@ class _PlaceDetailState extends State<PlaceDetail> {
         ),
         backgroundColor: const Color.fromARGB(255, 255, 193, 60),
         actions: [
-          InkWell(
-            onTap: () {},
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
-                Text(
-                  'Reviews',
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Icon(Icons.reviews),
-                SizedBox(
-                  width: 5,
-                ),
-              ],
-            ),
-          )
+          // InkWell(
+          //   onTap: () {},
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.end,
+          //     children: const [
+          //       Text(
+          //         'Reviews',
+          //         style: TextStyle(color: Colors.black, fontSize: 20),
+          //       ),
+          //       SizedBox(
+          //         width: 5,
+          //       ),
+          //       Icon(Icons.reviews),
+          //       SizedBox(
+          //         width: 5,
+          //       ),
+          //     ],
+          //   ),
+          // )
         ],
       ),
       body: _isInit
@@ -147,6 +144,10 @@ class _PlaceDetailState extends State<PlaceDetail> {
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  // FullMap()
                 ],
               ),
             ),

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:provider/provider.dart';
 
 import '../screens/places_overview_screen.dart';
 import '../screens/posts_overview_screen.dart';
 import '../screens/profile_screen.dart';
+import '../static_data.dart';
+import '../providers/posts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,10 +25,10 @@ class HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  final _pages = const [
-    PlacesOverviewScreen(),
+  final _pages = [
+    const PlacesOverviewScreen(),
     PostsOverviewScreen(),
-    ProfileScreen()
+    const ProfileScreen()
   ];
 
   @override

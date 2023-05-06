@@ -1,10 +1,16 @@
+import 'package:provider/provider.dart';
+
+import '../providers/auth.dart';
 import '../screens/signup_screen.dart';
 
 import '../screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/components/button/gf_button.dart';
 
+import 'home_screen.dart';
+
 class WelcomeScreen extends StatelessWidget {
+  static const routeName = '/welcome';
   const WelcomeScreen({
     super.key,
   });
@@ -93,7 +99,11 @@ class WelcomeScreen extends StatelessWidget {
               ),
               GFButton(
                 color: const Color.fromARGB(255, 124, 152, 213),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+
+                  Provider.of<Auth>(context, listen: false).logOut();
+                },
                 size: 80,
                 child: Container(
                     width: 250,

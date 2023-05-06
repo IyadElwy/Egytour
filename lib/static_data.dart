@@ -95,7 +95,7 @@ class StaticData {
       'id': '1',
       'place': '2',
       'attraction': 'Pyramids',
-      'title': 'My night with the pyramids.',
+      'title': 'My night at the pyramids.',
       'text':
           'The modern name of the city comes from its Coptic name Tamiati (Coptic: ⲧⲁⲙⲓⲁϯ Late Coptic: [dɑmˈjɑdi]), which in turn most likely comes from Ancient Egyptian dmj.t (harbour, port), although al-Maqrizi suggested a Syriac etymology.[2]',
       'datetime': '2023-12-22',

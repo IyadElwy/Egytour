@@ -10,6 +10,7 @@ class Post with ChangeNotifier {
   DateTime datetime;
   String userId;
   String imageUrl;
+  String email;
 
   Post(
       {required this.id,
@@ -19,5 +20,6 @@ class Post with ChangeNotifier {
       required this.text,
       required this.datetime,
       required this.userId,
-      required this.imageUrl});
+      required this.imageUrl,
+      required this.email});
 }
